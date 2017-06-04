@@ -62,7 +62,7 @@ while True:
                 break
             # print  timedelta1.microseconds
             last_switch_time=switchtime
-            os.system(r'"E:\adm\launch\Window Switcher.lnk"')
+            os.system(r'"C:\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Window Switcher.lnk"')
 
     if prevvalue2 != last_val2:
         # print  "B" , last_val2,
