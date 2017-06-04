@@ -14,8 +14,15 @@ import pyautogui
 
 # try:
 print "Activating foot switches.."
-ser = serial.Serial(3)
-# except:
+
+for portnum in range(0,7):
+
+    try:
+        ser = serial.Serial(portnum)
+        print "Pic in port ", portnum
+        break
+    except:
+        pass
 #     ser.close()
 #     ser = serial.Serial(3)
 
