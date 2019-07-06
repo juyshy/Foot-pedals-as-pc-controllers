@@ -22,31 +22,31 @@ void loop()
   if (val >= threshold)
   {
     Serial.println(1, DEC);
-    //Serial.println(val, DEC);
+    Serial.println(val, DEC);
     delay(300);
   }
     if (val2 >= 350)
   {
     Serial.println(2, DEC);
-    //Serial.println(val2, DEC);
+    Serial.println(val2, DEC);
     delay(300);
   }
     if (val3 >= threshold)
   {
     Serial.println(3, DEC);
-    //Serial.println(val3, DEC);
+    Serial.println(val3, DEC);
     delay(300);
   }
     if (val4 >= threshold)
   {
     Serial.println(4, DEC);
-    //Serial.println(val4, DEC);
+    Serial.println(val4, DEC);
     delay(300);
   }
     if (val5 >= threshold)
   {
     Serial.println(5, DEC);
-    //Serial.println(val5, DEC);
+    Serial.println(val5, DEC);
     delay(300);
   }
 }
