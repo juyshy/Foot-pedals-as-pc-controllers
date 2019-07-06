@@ -16,7 +16,7 @@ from utils import paste_from_clipboard
 ossystem=platform.system()
 # try:
 
-print "Activating foot switches.."
+print "Activating piezo switches.."
 portnum=0
 
 if ossystem != 'Windows':
@@ -24,6 +24,7 @@ if ossystem != 'Windows':
 
         try:
             ser = serial.Serial(portnum)
+
             print "Pic in port ", portnum
             break
         except:
@@ -35,7 +36,7 @@ if ossystem != 'Windows':
 else:
 
     serport="COM5"
-    serports=["COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","COM10","COM11","COM12"]
+    serports=["COM6","COM4","COM8","COM9","COM10","COM11","COM12","COM13","COM14","COM5","COM7","COM2","COM3","COM1"]#
     for serport in serports:
         try:
             print("tryin port ", serport)
@@ -55,7 +56,7 @@ last_click_time=last_switch_time =datetime.now() -timedelta(seconds=3)
 prevvalue='0'
 prevvalue2='0'
 last_values = ('0','0')
-
+previnstream=""
 while True:
 #for x in range(500):
 
@@ -63,21 +64,15 @@ while True:
     # if 'cancel' in cntrlcb:
     #     print "cancelled"
     while ser.inWaiting() > 0:
-        print "JEEE"
+
         instream +=ser.read()
-    instream = instream[-100:]
 
-    last_val = re.findall(r'A=(\d)B=(\d)\D*$',instream)
-    if last_val != []:
 
-        last_values= last_val[0]
-
-    last_val, last_val2 = last_values
-
-    if prevvalue != last_val:
-        # print  "A",  last_val,
-        prevvalue = last_val
-        if last_val == '1':
+    if instream != previnstream:
+        print instream[-3],
+        if instream[-3] == '1':
+            pyautogui.click()
+        elif instream[-3] == '2':
             print "windows switcher"
             switchtime=datetime.now()
             timedelta1=switchtime- last_switch_time
@@ -87,25 +82,23 @@ while True:
             # print  timedelta1.microseconds
             last_switch_time=switchtime
             os.system(r'"C:\Users\Default\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Window Switcher.lnk"')
+        elif instream[-3] == '3':
+            pyautogui.mouseDown()
+            time.sleep(3)
+            pyautogui.mouseUp()
+        elif instream[-3] == '4':
+            pyautogui.doubleClick()
+            time.sleep(1)
 
-    if prevvalue2 != last_val2:
-        # print  "B" , last_val2,
-        prevvalue2 = last_val2
-
-        if last_val2 == '1':
-            print "click"
-            # clicktime = datetime.now()
-            # timedelta2 = clicktime - last_click_time
-            # timedelta2.microseconds
-            # if timedelta2.seconds < 1 and timedelta2.microseconds < 300000:
-            #     break
-            # print  timedelta1.microseconds
-            # last_click_time = clicktime
-            pyautogui.click()
-            # os.system(r'"E:\autohotkeys\leftmouseclick.ahk"')
+        elif instream[-3] == '5':
+            pyautogui.rightClick()
+            time.sleep(1)
 
 
-    time.sleep(0.03)
+
+    instream = instream[-4:]
+    previnstream =instream
+    time.sleep(0.05)
 
 print "closing"
 ser.close()
