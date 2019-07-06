@@ -1,3 +1,4 @@
+// debugging threshold levels
 const int sensorPin = 0;
 const int sensorPin2= 1;
 const int sensorPin3= 2;
