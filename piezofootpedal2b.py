@@ -1,5 +1,5 @@
 ﻿#-------------------------------------------------------------------------------
-
+# using piezotest2/piezotest2.ino
 # Copyright:   (c) Jukka 2016
 # Licence:     do what you wish
 #-------------------------------------------------------------------------------
@@ -8,23 +8,18 @@
 import serial
 import time,os
 from datetime import datetime,timedelta
-import re
 import pyautogui
 import platform
-from utils import paste_from_clipboard
 
 ossystem=platform.system()
-# try:
 
 print "Activating piezo switches.."
 portnum=0
 
 if ossystem != 'Windows':
     for portnum in range(0,7):
-
         try:
             ser = serial.Serial(portnum)
-
             print "Pic in port ", portnum
             break
         except:
@@ -32,9 +27,7 @@ if ossystem != 'Windows':
     #     ser.close()
     #     ser = serial.Serial(3)
 
-
 else:
-
     serport="COM5"
     serports=["COM6","COM4","COM8","COM9","COM10","COM11","COM12","COM13","COM14","COM5","COM7","COM2","COM3","COM1"]#
     for serport in serports:
