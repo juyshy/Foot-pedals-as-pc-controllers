@@ -1,7 +1,7 @@
 Foot pedals as pc controllers
 =======
 
-Two switches via arduino controlling windows switcher (to replace ALT+TAB) and left mouse click.
+Five switches via arduino controlling windows switcher (to replace ALT+TAB) and left mouse click.
  
 
 
